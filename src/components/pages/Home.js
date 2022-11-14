@@ -10,10 +10,12 @@ const Home = () => {
             style={{backgroundImage: `url(${BannerImage}`}}
         >
             <div className="headerContainer">
-                <h1>Great Ever Pizzeria!</h1>
-                <p>PIZZA TO FIT ANY TASTE</p>
-                <Link to="/menu">
-                    <button>ORDER NOW</button>
+                <Link to="/login">
+                    <button>Login</button>
+                </Link>
+                <h1> </h1>
+                <Link to="/Register">
+                    <button>Register</button>
                 </Link>
             </div>
         </div>
