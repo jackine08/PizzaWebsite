@@ -11,6 +11,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
+    console.log("login handler called");
     if (idRef.current.value === "" || idRef.current.value === undefined) {
       alert("아이디를 입력하세요!!!");
       idRef.current.focus();
@@ -21,33 +22,38 @@ const Login = () => {
       pwRef.current.focus();
       return false;
     }
-
+    console.log("now id:", idRef.current.value, "now pw:", pwRef.current.value);
     console.log(
       "LoginForm:window.sessionStorage(login_id) =>",
       window.sessionStorage.getItem("id")
     );
-
+    const authObj = {
+      id: idRef.current.value,
+      password: pwRef.current.value,
+    };
     axios
-      .post("http://localhost:4000/auth/login_process", {
-        id: idRef.current.value,
-        password: pwRef.current.value,
-      })
+      .post("/auth/login_process", authObj)
       .then((res) => {
-        console.log("handleLogin =>", res);
-        if (res.data[0].cnt === 1) {
+        console.log("handleLogin =>", res.data);
+        if (res.data !== "Fail") {
+          //logined
+          console.log("login success!!");
           window.sessionStorage.setItem("id", idRef.current.value); // 세션스토리지에 key : id , value : idRef.current.value로 저장
           // sessionsStorage는 창 닫으면 사라짐, localStorage는 안사라짐
-          navigate("/main");
+          navigate("/menu");
         } else {
           alert("아이디, 패스워드가 정확하지 않습니다.");
           idRef.current.value = "";
           pwRef.current.value = "";
-          navigate("/");
+          //navigate("/home");
         }
       })
       .catch((e) => {
         console.error(e);
       });
+    axios.post("/auth/test", { data: "test_Data" }).then((res) => {
+      console.log(res.data);
+    });
   };
 
   const handleMemberForm = () => {
