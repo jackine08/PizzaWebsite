@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import RadioGroup from "../helpers/RadioGroup";
 import Radio from "../helpers/Radio";
+import Counter from '../helpers/Counter';
+
 const MenuItem = ({image, name, price}) => {
     return (
         <div className="menuItem">
@@ -19,8 +21,19 @@ const MenuItem = ({image, name, price}) => {
         </Radio>
 
       </RadioGroup>
+        
+        수량
+        <Counter />
+        샴페인?
+        <Counter />
+        
+      
+ 
+            
+            
         </div>
     );
 };
+
 
 export default MenuItem;

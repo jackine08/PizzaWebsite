@@ -13,6 +13,7 @@ import OrderManage from "./components/pages/manage/OrderManage";
 import IngredientManage from "./components/pages/manage/IngredientManage";
 import ServerTest_O from "./components/pages/server_test/Test_Order";
 import ServerTest_S from "./components/pages/server_test/Test_Stock";
+
 function App() {
   return (
     <div className="App">
