@@ -51,9 +51,6 @@ const Login = () => {
       .catch((e) => {
         console.error(e);
       });
-    axios.post("/auth/test", { data: "test_Data" }).then((res) => {
-      console.log(res.data);
-    });
   };
 
   const handleMemberForm = () => {

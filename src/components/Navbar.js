@@ -27,6 +27,8 @@ const Navbar = () => {
                 <Link to="/menu">Menu</Link>
                 <Link to="/about">About</Link>
                 <Link to="/contact">Contact</Link>
+                <Link to="/OrderManage">OrderManage</Link>
+                <Link to="/IngredientManage">IngredientManage</Link>
                 <button onClick={toggleNavbar}>
                     <ReorderIcon/>
                 </button>

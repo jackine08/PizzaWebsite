@@ -9,6 +9,8 @@ import Contact from "./components/pages/Contact";
 import Footer from "./components/Footer";
 import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
+import OrderManage from "./components/pages/manage/OrderManage";
+import IngredientManage from "./components/pages/manage/IngredientManage";
 
 function App() {
     return (
@@ -22,6 +24,8 @@ function App() {
                     <Route path="/contact" element={<Contact/>}/>
                     <Route path="/login" element={<Login/>}/>
                     <Route path="/register" element={<Register/>}/>
+                    <Route path="/OrderManage" element={<OrderManage/>}/>
+                    <Route path="/IngredientManage" element={<IngredientManage/>}/>
                 </Routes>
                 <Footer/>
             </BrowserRouter>
