@@ -7,35 +7,6 @@ import axios from "axios";
 var is_login;
 const Navbar = () => {
   const [openLinks, setOpenLinks] = useState(false);
-
-<<<<<<< HEAD
-    const toggleNavbar = () => {
-          setOpenLinks(!openLinks);
-    };
-
-    return (
-        <div className='navbar'>
-            <div className="leftSide" id={openLinks? "open" : "close"}>
-                <img src={Logo} alt="logo"/>
-                <div className="hiddenLinks">
-                    <Link to="/home">Home</Link>
-                    <Link to="/menu">Menu</Link>
-                    <Link to="/about">About</Link>
-                    <Link to="/contact">Contact</Link>
-                </div>
-            </div>
-            <div className="rightSide">
-                <Link to="/home">Home</Link>
-                <Link to="/menu">Menu</Link>
-                <Link to="/about">About</Link>
-                <Link to="/contact">Contact</Link>
-                <Link to="/OrderManage">OrderManage</Link>
-                <Link to="/IngredientManage">IngredientManage</Link>
-                <button onClick={toggleNavbar}>
-                    <ReorderIcon/>
-                </button>
-            </div>
-=======
   const toggleNavbar = () => {
     setOpenLinks(!openLinks);
   };
@@ -78,6 +49,7 @@ const Navbar = () => {
   //     is_login = <Link to="/login">Login</Link>;
   //   }
   console.log("before Return and after axios");
+
   return (
     <div className="navbar">
       <div className="leftSide" id={openLinks ? "open" : "close"}>
@@ -85,15 +57,17 @@ const Navbar = () => {
         <div className="hiddenLinks">
           <Link to="/home">Home</Link>
           <Link to="/menu">Menu</Link>
->>>>>>> 424d252579ffd28209d66c813eab74e812210581
+          <Link to="/about">About</Link>
+          <Link to="/contact">Contact</Link>
         </div>
-        ${is_login}
       </div>
       <div className="rightSide">
         <Link to="/home">Home</Link>
         <Link to="/menu">Menu</Link>
         <Link to="/about">About</Link>
         <Link to="/contact">Contact</Link>
+        <Link to="/OrderManage">OrderManage</Link>
+        <Link to="/IngredientManage">IngredientManage</Link>
         <button onClick={toggleNavbar}>
           <ReorderIcon />
         </button>
@@ -101,5 +75,4 @@ const Navbar = () => {
     </div>
   );
 };
-
 export default Navbar;
