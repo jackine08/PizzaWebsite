@@ -1,6 +1,6 @@
-import React from 'react';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
 import Navbar from "./components/Navbar";
 import Home from "./components/pages/Home";
 import Menu from "./components/pages/Menu";
@@ -11,26 +11,29 @@ import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
 import OrderManage from "./components/pages/manage/OrderManage";
 import IngredientManage from "./components/pages/manage/IngredientManage";
-
+import ServerTest_O from "./components/pages/server_test/Test_Order";
+import ServerTest_S from "./components/pages/server_test/Test_Stock";
 function App() {
-    return (
-        <div className="App">
-            <BrowserRouter>
-                <Navbar/>
-                <Routes>
-                    <Route path="/home" element={<Home/>}/>
-                    <Route path="/menu" element={<Menu/>}/>
-                    <Route path="/about" element={<About/>}/>
-                    <Route path="/contact" element={<Contact/>}/>
-                    <Route path="/login" element={<Login/>}/>
-                    <Route path="/register" element={<Register/>}/>
-                    <Route path="/OrderManage" element={<OrderManage/>}/>
-                    <Route path="/IngredientManage" element={<IngredientManage/>}/>
-                </Routes>
-                <Footer/>
-            </BrowserRouter>
-        </div>
-    );
+  return (
+    <div className="App">
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/home" element={<Home />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/OrderManage" element={<OrderManage />} />
+          <Route path="/IngredientManage" element={<IngredientManage />} />
+          <Route path="/Test_Order" element={<ServerTest_O />} />
+          <Route path="/Test_Stock" element={<ServerTest_S />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </div>
+  );
 }
 
 export default App;
