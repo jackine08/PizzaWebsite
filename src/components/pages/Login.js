@@ -32,7 +32,7 @@ const Login = () => {
       password: pwRef.current.value,
     };
     axios
-      .post("/auth/login_process", authObj)
+      .post("auth/login_process", authObj)
       .then((res) => {
         console.log("handleLogin =>", res.data);
         if (res.data !== "Fail") {

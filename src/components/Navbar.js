@@ -4,75 +4,101 @@ import "../styles/Navbar.css";
 import { Link } from "react-router-dom";
 import ReorderIcon from "@material-ui/icons/Reorder";
 import axios from "axios";
-var is_login;
+import { useNavigate } from "react-router-dom";
+
 const Navbar = () => {
   const [openLinks, setOpenLinks] = useState(false);
+  const navigate = useNavigate();
   const toggleNavbar = () => {
     setOpenLinks(!openLinks);
   };
-  //login session정보 받아오기
-  //true 면 Welcom, $(name) , (linkt to /auth/logout)logout
-  //false면 Login(link to login(this))
-  //let is_logined;
-  //let name;
-  console.log("before axios1");
-  console.log("before axios2");
+  const logoutHandler = () => {
+    axios.post("auth/logout").then((response) => {
+      navigate("/home");
+    });
+  };
+
+  let [is_logined, setIs_logined] = useState([]);
+  let [name, setName] = useState([]);
   axios
-    .get("/auth/check_login")
+    .get("auth/check_login")
     .then((response) => {
       console.log(response.data.islogin);
       if (response.data.islogin === "True") {
         console.log("Already Logined!");
-        is_login = (
-          <p>
-            <i>Welcome! ${response.data.name}</i>{" "}
-            <a href="/auth/logout">logout</a>
-          </p>
-        );
-        //is_logined = true;
-        //name = response.data.name;
+        setIs_logined("True");
+        setName(response.data.name);
       } else {
-        is_login = <Link to="/login">Login</Link>;
-        //is_logined = false;
+        console.log("entered else");
+        setIs_logined("False");
+        setName("");
       }
     })
     .catch((e) => {
       console.error(e);
     });
-  //   if (is_logined) {
-  //     is_login = (
-  //       <p>
-  //         <i>Welcome! ${name}</i> <a href="/auth/logout">logout</a>
-  //       </p>
-  //     );
-  //   } else {
-  //     is_login = <Link to="/login">Login</Link>;
-  //   }
-  console.log("before Return and after axios");
-
-  return (
-    <div className="navbar">
-      <div className="leftSide" id={openLinks ? "open" : "close"}>
-        <img src={Logo} alt="logo" />
-        <div className="hiddenLinks">
+  console.log(is_logined);
+  console.log(name);
+  //이거 welcome name부분 글자색이 검은색임 ㅠㅠ
+  if (is_logined === "True") {
+    console.log("yes login");
+    return (
+      <div className="navbar">
+        <div>
+          <p>
+            Welcome! {name}
+            <button onClick={logoutHandler}>Logout</button>
+          </p>
+        </div>
+        <div className="leftSide" id={openLinks ? "open" : "close"}>
+          <img src={Logo} alt="logo" />
+          <div className="hiddenLinks">
+            <Link to="/home">Home</Link>
+            <Link to="/menu">Menu</Link>
+            <Link to="/about">About</Link>
+            <Link to="/contact">Contact</Link>
+          </div>
+        </div>
+        <div className="rightSide">
           <Link to="/home">Home</Link>
           <Link to="/menu">Menu</Link>
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
+          <Link to="/OrderManage">OrderManage</Link>
+          <Link to="/IngredientManage">IngredientManage</Link>
+          <button onClick={toggleNavbar}>
+            <ReorderIcon />
+          </button>
         </div>
       </div>
-      <div className="rightSide">
-        <Link to="/home">Home</Link>
-        <Link to="/menu">Menu</Link>
-        <Link to="/about">About</Link>
-        <Link to="/contact">Contact</Link>
-        <Link to="/OrderManage">OrderManage</Link>
-        <Link to="/IngredientManage">IngredientManage</Link>
-        <button onClick={toggleNavbar}>
-          <ReorderIcon />
-        </button>
+    );
+  } else {
+    console.log("no login");
+    return (
+      <div className="navbar">
+        <div className="leftSide" id={openLinks ? "open" : "close"}>
+          <img src={Logo} alt="logo" />
+          <Link to="/login">Login</Link>
+          <div className="hiddenLinks">
+            <Link to="/home">Home</Link>
+            <Link to="/menu">Menu</Link>
+            <Link to="/about">About</Link>
+            <Link to="/contact">Contact</Link>
+          </div>
+        </div>
+        <div className="rightSide">
+          <Link to="/home">Home</Link>
+          <Link to="/menu">Menu</Link>
+          <Link to="/about">About</Link>
+          <Link to="/contact">Contact</Link>
+          <Link to="/OrderManage">OrderManage</Link>
+          <Link to="/IngredientManage">IngredientManage</Link>
+          <button onClick={toggleNavbar}>
+            <ReorderIcon />
+          </button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 export default Navbar;
