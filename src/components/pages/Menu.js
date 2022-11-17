@@ -5,23 +5,28 @@ import MenuItem from "../MenuItem";
 
 const Menu = () => {
 
-    var cart = [{}];
-
-    function menu_choice(name, style, count){
-
-
-    };
-
-    function payment(){
-
-
-    };
-
     function get_menu_list(){
 
-        
+        var contents = [];
+        // axios
+        //   .post("stock/get", obj)
+        //   .then((res) => {
+        //     contents = res.data;
+        //   })
+        //   .catch((e) => {
+        //     console.error(e);
+        //   });
+
+        //parsing
+        var qwe = MenuList;
+        for(var i=0; i<qwe.length;i++){
+            if(qwe[i].available == 1){
+                contents.push(qwe[i]);
+            }
+        }
+
         // DB 통신해서 남은 수량이 있는것만 리스트에 담아서 리턴
-        return MenuList
+        return contents;
     };
 
     var temp = get_menu_list();
@@ -36,10 +41,10 @@ const Menu = () => {
                             image={menuItem.image}
                             name={menuItem.name}
                             price={menuItem.price}/>
-                            
+
                     );
                 })}
-                
+
             </div>
 
         </div>

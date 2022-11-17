@@ -7,10 +7,12 @@ import '../../styles/Cart.css';
 const Cart = () => {
     function get_cart_data(id){
         var a = CartList;
+
         return a;
     };
+
     function pay(){
-        
+
     }
 
 
@@ -20,12 +22,10 @@ const Cart = () => {
                 <p>
                     {menu}&nbsp;&nbsp;&nbsp;&nbsp;
                     {style}
-                    <Counter/>
                 </p>
                 <p>
                 {price}
                 </p>
-                
 
             </div>
         );
