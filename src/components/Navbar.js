@@ -14,7 +14,7 @@ const Navbar = () => {
   };
   const logoutHandler = () => {
     axios.post("auth/logout").then((response) => {
-      navigate("/home");
+      navigate("/");
     });
   };
 
@@ -26,11 +26,11 @@ const Navbar = () => {
     .then((response) => {
       //console.log(response.data.islogin);
       if (response.data.islogin === "True") {
-        //console.log("Already Logined!");
+        console.log("Already Logined!");
         setIs_logined("True");
         setName(response.data.name);
       } else {
-        //console.log("entered else");
+        console.log("entered else");
         setIs_logined("False");
         setName("");
       }
@@ -41,6 +41,7 @@ const Navbar = () => {
   //console.log(is_logined);
   //console.log(name);
   //이거 welcome name부분 글자색이 검은색임 ㅠㅠ
+  console.log("Now islogined is : ", is_logined.data);
   if (is_logined === "True") {
     console.log("yes login");
     return (
@@ -56,16 +57,12 @@ const Navbar = () => {
           <div className="hiddenLinks">
             <Link to="/">Home</Link>
             <Link to="/menu">Menu</Link>
-            <Link to="/about">About</Link>
-            <Link to="/contact">Contact</Link>
           </div>
         </div>
         <div className="rightSide">
           <Link to="/">Home</Link>
           <Link to="/menu">Menu</Link>
           <Link to="/cart">Cart</Link>
-          <Link to="/about">About</Link>
-          <Link to="/contact">Contact</Link>
           <Link to="/OrderManage">OrderManage</Link>
           <Link to="/IngredientManage">IngredientManage</Link>
 
@@ -86,16 +83,12 @@ const Navbar = () => {
           <div className="hiddenLinks">
             <Link to="/">Home</Link>
             <Link to="/menu">Menu</Link>
-            <Link to="/about">About</Link>
-            <Link to="/contact">Contact</Link>
           </div>
         </div>
         <div className="rightSide">
           <Link to="/">Home</Link>
           <Link to="/menu">Menu</Link>
           <Link to="/cart">Cart</Link>
-          <Link to="/about">About</Link>
-          <Link to="/contact">Contact</Link>
           <Link to="/OrderManage">OrderManage</Link>
           <Link to="/IngredientManage">IngredientManage</Link>
           <Link to="/DeliveryManage">DeliveryManage</Link>
