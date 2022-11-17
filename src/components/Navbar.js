@@ -20,6 +20,7 @@ const Navbar = () => {
 
   let [is_logined, setIs_logined] = useState([]);
   let [name, setName] = useState([]);
+
   axios
     .get("auth/check_login")
     .then((response) => {
@@ -97,7 +98,7 @@ const Navbar = () => {
           <Link to="/contact">Contact</Link>
           <Link to="/OrderManage">OrderManage</Link>
           <Link to="/IngredientManage">IngredientManage</Link>
-
+          <Link to="/DeliveryManage">DeliveryManage</Link>
           <Link to="/Test_Stock">Test2</Link>
           <button onClick={toggleNavbar}>
             <ReorderIcon />
