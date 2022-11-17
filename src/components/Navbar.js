@@ -53,15 +53,16 @@ const Navbar = () => {
         <div className="leftSide" id={openLinks ? "open" : "close"}>
           <img src={Logo} alt="logo" />
           <div className="hiddenLinks">
-            <Link to="/home">Home</Link>
+            <Link to="/">Home</Link>
             <Link to="/menu">Menu</Link>
             <Link to="/about">About</Link>
             <Link to="/contact">Contact</Link>
           </div>
         </div>
         <div className="rightSide">
-          <Link to="/home">Home</Link>
+          <Link to="/">Home</Link>
           <Link to="/menu">Menu</Link>
+          <Link to="/cart">Cart</Link>
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
           <Link to="/OrderManage">OrderManage</Link>
@@ -82,15 +83,16 @@ const Navbar = () => {
           <img src={Logo} alt="logo" />
           <Link to="/login">Login</Link>
           <div className="hiddenLinks">
-            <Link to="/home">Home</Link>
+            <Link to="/">Home</Link>
             <Link to="/menu">Menu</Link>
             <Link to="/about">About</Link>
             <Link to="/contact">Contact</Link>
           </div>
         </div>
         <div className="rightSide">
-          <Link to="/home">Home</Link>
+          <Link to="/">Home</Link>
           <Link to="/menu">Menu</Link>
+          <Link to="/cart">Cart</Link>
           <Link to="/about">About</Link>
           <Link to="/contact">Contact</Link>
           <Link to="/OrderManage">OrderManage</Link>

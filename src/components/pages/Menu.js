@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {MenuList} from '../../helpers/MenuList';
 import '../../styles/Menu.css';
 import MenuItem from "../MenuItem";
@@ -39,9 +39,9 @@ const Menu = () => {
                             
                     );
                 })}
+                
             </div>
 
-            <input type="button" value="payment" onClick={payment}></input>
         </div>
     );
 };
