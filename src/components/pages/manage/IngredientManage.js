@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState }from 'react';
+import { useRef } from 'react';
 import {IngredientList} from '../../../helpers/IngredientList';
 import '../../../styles/Order.css';
 
@@ -7,11 +8,11 @@ const IngredientManage = () => {
     function get_ingredient_data(id){
         var contents;
 
-        var obj = {INDEX:120};
+        var obj = {INDEX:0};
 
         //get ingredients data through post communication
         // axios
-        //   .post("/ingredients/get_data", obj)
+        //   .post("stock/get", obj)
         //   .then((res) => {
         //     contents = res.data;
         //   })
@@ -27,6 +28,7 @@ const IngredientManage = () => {
     function change_ingredient_count(name, count){
         //change ingredients count through post communication
 
+
         var obj = {name: name, count: count};
 
         // axios
@@ -40,15 +42,17 @@ const IngredientManage = () => {
         //     console.error(e);
         //   });
 
-        
+
     }
 
+
     const IngredientItem = ({key, name, count}) => {
+
         return (
             <div className="orderItem" key = {key}>
                 <h1>{name}</h1>
                 <p>{count}</p>
-                <input type="text"></input>
+                <input type="text" id = {name}  ></input>
                 <input type="button" value = "confirm" onClick={()=>{change_ingredient_count(name, count);}}></input>
             </div>
         );

@@ -11,12 +11,12 @@ const OrderManage = () => {
     const [data_to_show, set_data] = useState(get_order_data(0));
     var data_state = 0;
 
-    function get_order_data(id){
+    function get_order_data(){
         //get order using post communication
         var contents;
-        var obj = {id : id, INDEX:130}
+        var obj = {uid : "Manager"}
         // axios
-        //   .post("/order/get_data", obj)
+        //   .post("order/get", obj)
         //   .then((res) => {
         //     contents = res.data;
         //   })
@@ -38,21 +38,22 @@ const OrderManage = () => {
 
     };
 
-    function changeState(orderNum, state){
+    function changeState(order_id, state){
         console.log(state);
-        console.log(orderNum);
-        var obj = {orderNum : orderNum, state : state, INDEX: 5};
+        console.log(order_id);
+        var obj = {order_id : order_id, state : state};
 
         // axios
-        //   .post("/state/changestate", obj)
+        //   .post("order/modify", obj)
         //   .then((res) => {
-        //     if(res.data == true){
+        //     if(res.status == "Success"){
         //         console.log("change Done")
         //     }
         //   })
         //   .catch((e) => {
         //     console.error(e);
         //   });
+
 
     };
 
@@ -72,7 +73,6 @@ const OrderManage = () => {
 
 
     function change_data_to_show(state){
-
         if(state == 1){
             set_data(order_data_done);
         }else{

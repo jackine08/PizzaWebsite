@@ -12,9 +12,9 @@ const DeliveryManage = () => {
 
     function get_delivery_data(id){
         //get delivery using post communication
-        var obj = {id : id, INDEX:130}
+        var obj = {id : "Manager"};
         // axios
-        //   .post("/delivery/get_data", obj)
+        //   .post("order/get", obj)
         //   .then((res) => {
         //     contents = res.data;
         //   })
@@ -23,6 +23,7 @@ const DeliveryManage = () => {
         //   });
         contents = DeliveryList;
 
+        //parsing
         return contents;
 
     };
@@ -30,12 +31,12 @@ const DeliveryManage = () => {
     function changeState(deliveryNum, state){
         console.log(state);
         console.log(deliveryNum);
-        var obj = {deliveryNum : deliveryNum, state : state, INDEX: 5};
+        var obj = {order_id : deliveryNum, state : state};
 
         // axios
-        //   .post("/state/changestate", obj)
+        //   .post("order/modify", obj)
         //   .then((res) => {
-        //     if(res.data == true){
+        //     if(res.status == "Success"){
         //         console.log("change Done")
         //     }
         //   })
