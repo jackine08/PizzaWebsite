@@ -13,7 +13,17 @@ const OrderManage = () => {
 
     function get_order_data(id){
         //get order using post communication
-        var contents = OrderList;
+        var contents;
+        var obj = {id : id, INDEX:130}
+        // axios
+        //   .post("/order/get_data", obj)
+        //   .then((res) => {
+        //     contents = res.data;
+        //   })
+        //   .catch((e) => {
+        //     console.error(e);
+        //   });
+        contents = OrderList;
 
         //parsing
         for(var i=0; i<contents.length; i++){
@@ -23,6 +33,7 @@ const OrderManage = () => {
                 order_data.push(contents[i]);
             }
         }
+
         return order_data;
 
     };
@@ -43,13 +54,12 @@ const OrderManage = () => {
         //     console.error(e);
         //   });
 
-
     };
 
 
     const OrderItem = ({key, menu, state, id}) => {
         return (
-            <div className="orderItem" key = {key}>
+            <div className="orderItem">
                 <h1>{id}</h1>
                 <p>{menu}</p>
                 <p>{state}</p>
