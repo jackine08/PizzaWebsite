@@ -12,29 +12,26 @@ const MenuItem = ({image, name, price}) => {
     const wine_num = useRef();
 
     function incart(){
-        var obj = {demand: demand.current.value, style: style, menu_num:menu_num.current.value, wine_num: wine_num.current.value};
+        var obj = {demand: demand.current.value, style: {style}, menu_num:menu_num.current.value, wine_num: wine_num.current.value};
 
         console.log(obj);
         //axios.post("order/set")
 
     };
-    const [style, set_style] = useState("simple")
+
+    const [style, setStyle] = useState("simple");
+
     return (
         <div className="menuItem">
             <div style={{backgroundImage: `url(${image})`}}></div>
             <h1>{name}</h1>
             <p>${price}</p>
-            <RadioGroup value = {style} onChange={set_style}>
-                {name != "샴페인 축제 디너" && <Radio name="contact" value="simple">
-                  심플
-                </Radio>}
-                <Radio name="contact" value="grand">
-                  그랜드
-                </Radio>
-                <Radio name="contact" value="deluxe">
-                  디럭스
-                </Radio>
-            </RadioGroup>
+
+                {name != "샴페인 축제 디너" &&
+                <p><input type='radio' name="style" value='simple' onClick={()=>{setStyle("simple")}}/>심플</p>
+                }
+                <input type='radio' name="style" value='grand' onClick={()=>{setStyle("grand")}}/>그랜드
+                <input type='radio' name="style" value='deluxe' onClick={()=>{setStyle("deluxe")}}/>디럭스
 
             <p>요청사항
             <input type="text" ref={demand}></input>
