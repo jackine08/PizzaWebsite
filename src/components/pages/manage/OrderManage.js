@@ -64,9 +64,9 @@ const OrderManage = () => {
                 <h1>{id}</h1>
                 <p>{menu}</p>
                 <p>{state}</p>
-                <input type="button" value = "state_before" onClick={()=>{changeState(id,"before");}}></input>
-                <input type="button" value = "state_after" onClick={()=>{changeState(id,"after");}}></input>
-                <input type="button" value = "state_done" onClick={()=>{changeState(id,"done");}}></input>
+                <input type="button" value = "payment_comfirm" onClick={()=>{changeState(id,"payment confirm");}}></input>
+                <input type="button" value = "cooking" onClick={()=>{changeState(id,"cooking");}}></input>
+                <input type="button" value = "cook_done" onClick={()=>{changeState(id,"cook done");}}></input>
             </div>
         );
     };

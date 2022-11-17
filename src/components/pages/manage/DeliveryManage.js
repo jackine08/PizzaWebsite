@@ -55,9 +55,9 @@ const DeliveryManage = () => {
                 <h1>{deliveryman}</h1>
                 <p>{order_num}</p>
                 <p>{state}</p>
-                <input type="button" value = "state_before" onClick={()=>{changeState(order_num,"before");}}></input>
-                <input type="button" value = "state_on_going" onClick={()=>{changeState(order_num,"on going");}}></input>
-                <input type="button" value = "state_done" onClick={()=>{changeState(order_num,"done");}}></input>
+                <input type="button" value = "cook_done" onClick={()=>{changeState(order_num,"cook_done");}}></input>
+                <input type="button" value = "on_delivery" onClick={()=>{changeState(order_num,"on_delivery");}}></input>
+                <input type="button" value = "delivery_done" onClick={()=>{changeState(order_num,"delivery_done");}}></input>
             </div>
         );
     };
