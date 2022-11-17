@@ -10,7 +10,7 @@ function Counter() {
   const onDecrease = () => {
     setNumber(number - 1);
   }
-
+  
   return (
     
       <p>

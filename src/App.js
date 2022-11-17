@@ -9,6 +9,7 @@ import Contact from "./components/pages/Contact";
 import Footer from "./components/Footer";
 import Login from "./components/pages/Login";
 import Register from "./components/pages/Register";
+import Cart from "./components/pages/Cart";
 import OrderManage from "./components/pages/manage/OrderManage";
 import IngredientManage from "./components/pages/manage/IngredientManage";
 import ServerTest_O from "./components/pages/server_test/Test_Order";
@@ -25,6 +26,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/cart" element={<Cart />} />
           <Route path="/register" element={<Register />} />
           <Route path="/OrderManage" element={<OrderManage />} />
           <Route path="/IngredientManage" element={<IngredientManage />} />
