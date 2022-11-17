@@ -22,23 +22,26 @@ const Login = () => {
       pwRef.current.focus();
       return false;
     }
-    // console.log("now id:", idRef.current.value, "now pw:", pwRef.current.value);
+
+    console.log("now id:", idRef.current.value, "now pw:", pwRef.current.value);
     console.log(
       "LoginForm:window.sessionStorage(login_id) =>",
       window.sessionStorage.getItem("id")
     );
+
     const authObj = {
       id: idRef.current.value,
       password: pwRef.current.value,
     };
+
     axios
-      .post("auth/login_process", authObj)
+      .post("/auth/login_process", authObj)
       .then((res) => {
-        //console.log("handleLogin =>", res.data);
+        console.log("handleLogin =>", res.data);
         if (res.data !== "Fail") {
           //logined
-          //console.log("login success!!");
-          //window.sessionStorage.setItem("id", idRef.current.value); // 세션스토리지에 key : id , value : idRef.current.value로 저장
+          console.log("login success!!");
+          window.sessionStorage.setItem("id", idRef.current.value); // 세션스토리지에 key : id , value : idRef.current.value로 저장
           // sessionsStorage는 창 닫으면 사라짐, localStorage는 안사라짐
           navigate("/menu");
         } else {
@@ -56,6 +59,7 @@ const Login = () => {
   const handleMemberForm = () => {
     navigate("/member"); // 해당 url로 바로 이동
   };
+
   return (
     <div>
       <p></p>

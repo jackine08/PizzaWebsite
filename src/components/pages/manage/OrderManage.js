@@ -5,12 +5,27 @@ import '../../../styles/Order.css';
 const OrderManage = () => {
 
     function get_order_data(id){
+        var obj = {id : id};
+
+        var order_data = [];
+
         var a = OrderList;
         return a;
     };
 
-    const changeState_before = (key)=>{
+    const changeState_before = (orderNum)=>{
+        var obj = {orderNum : orderNum, INDEX: 5};
 
+        // axios
+        //   .post("/state/changestate", obj)
+        //   .then((res) => {
+        //     if(res.data == true){
+        //         console.log("change Done")
+        //     }
+        //   })
+        //   .catch((e) => {
+        //     console.error(e);
+        //   });
     };
 
     const changeState_after = (key)=>{
@@ -33,7 +48,6 @@ const OrderManage = () => {
             </div>
         );
     };
-
 
     var order_data = get_order_data(998);
 

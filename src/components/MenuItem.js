@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import RadioGroup from "../helpers/RadioGroup";
 import Radio from "../helpers/Radio";
-import Counter from '../helpers/Counter';
-
+import Counter from "../helpers/Counter";
 const MenuItem = ({image, name, price}) => {
     function order(){
 
@@ -42,6 +41,5 @@ const MenuItem = ({image, name, price}) => {
         </div>
     );
 };
-
 
 export default MenuItem;
