@@ -1,22 +1,22 @@
 export const IngredientList =[
     {
-        name : "carrot",
+        name : "steak",
         count : 1
     },
     {
-        name :"meat",
+        name :"salad",
         count : 2
     },
     {
-        name : "onion",
+        name : "bacon",
         count : 3
     },
     {
-        name: "garlic",
+        name: "egg",
         count: 4
     },
     {
-        name: "oil",
+        name: "bread",
         count: 5
     },
 ]

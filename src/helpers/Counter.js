@@ -8,21 +8,24 @@ function Counter() {
   }
 
   const onDecrease = () => {
-    setNumber(number - 1);
+    if(number>0){
+        setNumber(number - 1);
+    }
+
   }
-  
+
   return (
-    
+
       <p>
         {number}
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <button onClick={onDecrease}>-</button> 
-        <button onClick={onIncrease}>+</button>    
+        <button onClick={onDecrease}>-</button>
+        <button onClick={onIncrease}>+</button>
       </p>
-    
+
   );
 }
 
