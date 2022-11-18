@@ -8,14 +8,27 @@ const MenuItem = ({image, name, price}) => {
 
     const demand = useRef();
     // const style = useRef();
-    const menu_num = useRef();
+    const count = useRef();
     const wine_num = useRef();
 
     function incart(){
-        var obj = {demand: demand.current.value, style: {style}, menu_num:menu_num.current.value, wine_num: wine_num.current.value};
+        var obj = {change: demand.current.value,
+                    style: {style},
+                    menu: name,
+                    num: count.current.value};
 
         console.log(obj);
-        //axios.post("order/set")
+        axios
+          .post("order/set", obj)
+          .then((res) => {
+            if(res.data.status == "Success"){
+                console.log("menu in cart Success");
+            }
+          })
+          .catch((e) => {
+            console.error(e);
+          });
+
 
     };
 
@@ -38,7 +51,7 @@ const MenuItem = ({image, name, price}) => {
             </p>
             <p>
             수량
-            <input type="text" ref={menu_num} />
+            <input type="text" ref={count} />
             </p>
             <p>
             와인
