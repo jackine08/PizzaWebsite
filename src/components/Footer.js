@@ -8,13 +8,7 @@ import LinkedInIcon from '@material-ui/icons/LinkedIn';
 const Footer = () => {
     return (
         <div className="footer">
-            <div className="socialMedia">
-                <InstagramIcon/>
-                <TwitterIcon/>
-                <FacebookIcon/>
-                <LinkedInIcon/>
-            </div>
-            <p>&copy; 2021 greateverpizza.com</p>
+            <p>&copy; 2022 Mr.daebak</p>
         </div>
     );
 };
