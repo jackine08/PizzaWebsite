@@ -5,10 +5,6 @@ import "../../styles/Home.css";
 import axios from "axios";
 const logcheck = async () => {
   const check = await axios.get("auth/check_login");
-  console.log(check);
-  console.log(check.data);
-  console.log(check.data.islogin);
-  console.log(check.data.name);
   return check.data;
 };
 const Home = () => {

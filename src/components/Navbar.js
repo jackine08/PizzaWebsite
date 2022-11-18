@@ -8,10 +8,6 @@ import { useNavigate } from "react-router-dom";
 //<Link to="/Test_Order">Test</Link>
 const logcheck = async () => {
   const check = await axios.get("auth/check_login");
-  console.log(check);
-  console.log(check.data);
-  console.log(check.data.islogin);
-  console.log(check.data.name);
   return check.data;
 };
 
@@ -32,14 +28,10 @@ const Navbar = () => {
 
   const getcheck = logcheck();
   getcheck.then((res) => {
-    console.log("PT1");
-    console.log("pro res : ", res);
-    console.log("pro val", res.name, res.islogin);
     setIs_logined(res.islogin);
     setName(res.name);
   });
   if (is_logined === "True") {
-    console.log("yes login");
     return (
       <div className="navbar">
         <div>
@@ -49,7 +41,10 @@ const Navbar = () => {
           </p>
         </div>
         <div className="leftSide" id={openLinks ? "open" : "close"}>
-          <Link to="/"> <img src={Logo} alt="logo" /> </Link>
+          <Link to="/">
+            {" "}
+            <img src={Logo} alt="logo" />{" "}
+          </Link>
           <div className="hiddenLinks">
             <Link to="/">Home</Link>
             <Link to="/menu">Menu</Link>
@@ -70,11 +65,13 @@ const Navbar = () => {
       </div>
     );
   } else {
-    console.log("no login");
     return (
       <div className="navbar">
         <div className="leftSide" id={openLinks ? "open" : "close"}>
-          <Link to="/"> <img src={Logo} alt="logo" /> </Link>
+          <Link to="/">
+            {" "}
+            <img src={Logo} alt="logo" />{" "}
+          </Link>
           <Link to="/login">Login</Link>
           <div className="hiddenLinks">
             <Link to="/">Home</Link>
