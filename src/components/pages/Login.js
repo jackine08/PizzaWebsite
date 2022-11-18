@@ -38,12 +38,17 @@ const Login = () => {
       .post("/auth/login_process", authObj)
       .then((res) => {
         console.log("handleLogin =>", res.data);
-        if (res.data !== "Fail") {
+        if (res.data === "Customer") {
           //logined
-          console.log("login success!!");
+          console.log("login as customer");
           window.sessionStorage.setItem("id", idRef.current.value); // 세션스토리지에 key : id , value : idRef.current.value로 저장
           // sessionsStorage는 창 닫으면 사라짐, localStorage는 안사라짐
           navigate("/menu");
+        } else if (res.data === "Manager") {
+          console.log("login as manager");
+          window.sessionStorage.setItem("id", idRef.current.value);
+          navigate("/");
+          //home으로 이동해서 거기서 navbar새로고침되게 만들고 ordermanage,ingredient manage만 나오게 분기?
         } else {
           alert("아이디, 패스워드가 정확하지 않습니다.");
           idRef.current.value = "";

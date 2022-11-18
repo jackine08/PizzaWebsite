@@ -6,44 +6,32 @@ import ReorderIcon from "@material-ui/icons/Reorder";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 //<Link to="/Test_Order">Test</Link>
+const logcheck = async () => {
+  const check = await axios.get("auth/check_login");
+  return check.data;
+};
+
 const Navbar = () => {
   const [openLinks, setOpenLinks] = useState(false);
   const navigate = useNavigate();
+  let [is_logined, setIs_logined] = useState([]);
+  let [name, setName] = useState([]);
   const toggleNavbar = () => {
     setOpenLinks(!openLinks);
   };
   const logoutHandler = () => {
     axios.post("auth/logout").then((response) => {
+      setIs_logined("False");
       navigate("/");
     });
   };
 
-  let [is_logined, setIs_logined] = useState([]);
-  let [name, setName] = useState([]);
-
-  axios
-    .get("auth/check_login")
-    .then((response) => {
-      //console.log(response.data.islogin);
-      if (response.data.islogin === "True") {
-        console.log("Already Logined!");
-        setIs_logined("True");
-        setName(response.data.name);
-      } else {
-        console.log("entered else");
-        setIs_logined("False");
-        setName("");
-      }
-    })
-    .catch((e) => {
-      console.error(e);
-    });
-  //console.log(is_logined);
-  //console.log(name);
-  //이거 welcome name부분 글자색이 검은색임 ㅠㅠ
-  console.log("Now islogined is : ", is_logined.data);
+  const getcheck = logcheck();
+  getcheck.then((res) => {
+    setIs_logined(res.islogin);
+    setName(res.name);
+  });
   if (is_logined === "True") {
-    console.log("yes login");
     return (
       <div className="navbar">
         <div>
@@ -53,7 +41,10 @@ const Navbar = () => {
           </p>
         </div>
         <div className="leftSide" id={openLinks ? "open" : "close"}>
-          <Link to="/"> <img src={Logo} alt="logo" /> </Link>
+          <Link to="/">
+            {" "}
+            <img src={Logo} alt="logo" />{" "}
+          </Link>
           <div className="hiddenLinks">
             <Link to="/">Home</Link>
             <Link to="/menu">Menu</Link>
@@ -74,11 +65,13 @@ const Navbar = () => {
       </div>
     );
   } else {
-    console.log("no login");
     return (
       <div className="navbar">
         <div className="leftSide" id={openLinks ? "open" : "close"}>
-          <Link to="/"> <img src={Logo} alt="logo" /> </Link>
+          <Link to="/">
+            {" "}
+            <img src={Logo} alt="logo" />{" "}
+          </Link>
           <Link to="/login">Login</Link>
           <div className="hiddenLinks">
             <Link to="/">Home</Link>
