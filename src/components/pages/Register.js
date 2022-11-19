@@ -21,6 +21,7 @@ const Register = () => {
       phone: phoneRef.current.value,
       address: addrRef.current.value,
     };
+    console.log(sendObj);
     axios.post("auth/signin_process", sendObj).then((res) => {
       if (res.data === "ID Fail") {
         //아이디 중복
@@ -54,7 +55,7 @@ const Register = () => {
         </p>
         <p>
           <input
-            type="number"
+            type="text"
             name="credit"
             ref={creditRef}
             placeholder="credit"
