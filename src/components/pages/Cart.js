@@ -46,8 +46,8 @@ const Cart = () => {
               key={cartItem.menu}
               menu={cartItem.menu}
               style={cartItem.style}
-              number={cartItem.number}
-              state={cartItem.state}
+              number={cartItem.numbers}
+              state={cartItem.status}
             />
           );
         })}
