@@ -62,7 +62,7 @@ const Login = () => {
   };
 
   const handleMemberForm = () => {
-    navigate("/member"); // 해당 url로 바로 이동
+    navigate("/Register"); // 해당 url로 바로 이동
   };
 
   return (
