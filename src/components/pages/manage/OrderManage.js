@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ReactDOM from "react-dom";
 import { OrderList } from "../../../helpers/OrderList";
 import "../../../styles/Order.css";
 import { LocalParking } from "@material-ui/icons";
+import Login from "../Login";
+var order_data = [];
+var order_data_done = [];
+
 const get_order = async () => {
   var obj = { uid: "Manager" };
   console.log("get in sss");
@@ -11,40 +15,40 @@ const get_order = async () => {
   console.log("will return order data");
   return (await order_data).data;
 };
+const Get_order_data = () => {
+  //get order using post communication
+  console.log("will get order data");
+  order_data = [];
+  order_data_done = [];
+  let [contents, setContents] = useState([]);
+  //let contents;
+  const Order_promise = get_order();
+  Order_promise.then((res) => {
+    //console.log("res is : ", res);
+    //contents = res;
+    setContents(res);
+  });
+
+  console.log("contents is : ", contents);
+  console.log(contents[0]);
+  for (var i = 0; i < contents.length; i++) {
+    console.log("state check", contents[i].order_status);
+    if (contents[i].order_status == "Done") {
+      //console.log("pushed done");
+      order_data_done.push(contents[i]);
+    } else {
+      //console.log("pushed no done");
+      order_data.push(contents[i]);
+    }
+  }
+  console.log("Point1");
+  return order_data;
+};
 
 const OrderManage = () => {
-  var order_data = [];
-  var order_data_done = [];
-
-  const [data_to_show, set_data] = useState(Get_order_data(0));
+  const [data_to_show, set_data] = useState(Get_order_data());
 
   var data_state = 0;
-
-  function Get_order_data() {
-    //get order using post communication
-    console.log("will get order data");
-    let [contents, setContents] = useState([]);
-    //let contents;
-    const Order_promise = get_order();
-    Order_promise.then((res) => {
-      console.log("res is : ", res);
-      //contents = res;
-      setContents(res);
-    });
-
-    console.log("contents is : ", contents);
-    for (var i = 0; i < contents.length; i++) {
-      if (contents[i].state == "Done") {
-        console.log("pushed done");
-        order_data_done.push(contents[i]);
-      } else {
-        console.log("pushed no done");
-        order_data.push(contents[i]);
-      }
-    }
-    console.log("Point1");
-    return order_data;
-  }
 
   function changeState(order_id, state) {
     var obj = { order_id: order_id, state: state };
@@ -54,13 +58,14 @@ const OrderManage = () => {
       .then((res) => {
         if (res.status == "Success") {
           console.log("change Done");
-        }
+        } else console.log("change Fail");
       })
       .catch((e) => {
         console.error(e);
       });
     console.log("S1");
-    set_data(Get_order_data());
+    //set_data(Get_order_data());
+
     console.log("S2");
     console.log("Point3");
   }
@@ -95,7 +100,7 @@ const OrderManage = () => {
   };
 
   function change_data_to_show(state) {
-    //console.log("Point4");
+    console.log("Point4");
     if (state == 1) {
       set_data(order_data_done);
     } else {
