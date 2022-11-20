@@ -5,50 +5,44 @@ import { OrderList } from "../../../helpers/OrderList";
 import "../../../styles/Order.css";
 import { LocalParking } from "@material-ui/icons";
 import Login from "../Login";
-var order_data = [];
-var order_data_done = [];
-
-const get_order = async () => {
-  var obj = { uid: "Manager" };
-  console.log("get in sss");
-  const order_data = axios.post("order/get", obj);
-  console.log("will return order data");
-  return (await order_data).data;
-};
-const Get_order_data = () => {
-  //get order using post communication
-  console.log("will get order data");
-  order_data = [];
-  order_data_done = [];
-  let [contents, setContents] = useState([]);
-  //let contents;
-  const Order_promise = get_order();
-  Order_promise.then((res) => {
-    //console.log("res is : ", res);
-    //contents = res;
-    setContents(res);
-  });
-
-  console.log("contents is : ", contents);
-  console.log(contents[0]);
-  for (var i = 0; i < contents.length; i++) {
-    console.log("state check", contents[i].order_status);
-    if (contents[i].order_status == "Done") {
-      //console.log("pushed done");
-      order_data_done.push(contents[i]);
-    } else {
-      //console.log("pushed no done");
-      order_data.push(contents[i]);
-    }
-  }
-  console.log("Point1");
-  return order_data;
-};
 
 const OrderManage = () => {
-  const [data_to_show, set_data] = useState(Get_order_data());
 
-  var data_state = 0;
+  const [data_to_show, set_data] = useState([]);
+  var order_data = [];
+  var order_data_done = [];
+  var contents = [];
+
+
+  function get_order_data(){
+    order_data = [];
+    order_data_done = [];
+
+    const temp = async() => {
+      try{
+          var obj = { uid: "Manager"};
+          const res = await axios.post('/order/get', obj);
+          // 받아온 데이터를 useState 를 이용하여 선언한다.
+          contents = res.data;
+          } catch(e) {
+              console.error(e.message)
+          }
+      }
+    // 받아온 데이터를 useState 를 이용하여 선언한다.
+
+    for (var i = 0; i < contents.length; i++) {
+        console.log("state check", contents[i].order_status);
+        if (contents[i].order_status == "Done") {
+        //console.log("pushed done");
+        order_data_done.push(contents[i]);
+        } else {
+        //console.log("pushed no done");
+        order_data.push(contents[i]);
+        }
+    }
+    // console.log("Point1");
+    return order_data;
+  };
 
   function changeState(order_id, state) {
     var obj = { order_id: order_id, state: state };
@@ -63,20 +57,52 @@ const OrderManage = () => {
       .catch((e) => {
         console.error(e);
       });
-    console.log("S1");
-    //set_data(Get_order_data());
+    };
 
-    console.log("S2");
-    console.log("Point3");
+
+  function change_data_to_show(state) {
+    console.log("change_data_to_show");
+    console.log(order_data);
+    console.log(order_data_done);
+
+    if (state == 1) {
+      set_data(order_data_done);
+    } else {
+      set_data(order_data);
+    }
   }
 
+  useEffect(async() => {
+      try{
+          var obj = { uid: "Manager"};
+          const res = await axios.post('/order/get', obj);
+          // 받아온 데이터를 useState 를 이용하여 선언한다.
+          set_data(res.data);
+          contents = res.data;
+          for (var i = 0; i < contents.length; i++) {
+              if (contents[i].order_status == "Done") {
+              //console.log("pushed done");
+                order_data_done.push(contents[i]);
+              } else {
+              //console.log("pushed no done");
+              order_data.push(contents[i]);
+              }
+          }
+          console.log(order_data);
+          console.log(order_data_done);
+          } catch(e) {
+              console.error(e.message)
+          }
+    },[])
+
+  //console.log("Point5");
   const OrderItem = ({ key, menu, state, id }) => {
     console.log("in Order Item");
     return (
       <div className="orderItem">
-        <h1>{id}</h1>
-        <p>{menu}</p>
-        <p>{state}</p>
+        <h1>주문번호: {id}</h1>
+        <p>name: {menu}</p>
+        <p>order_status: {state}</p>
         <input
           type="button"
           value="payment_comfirm"
@@ -93,21 +119,12 @@ const OrderManage = () => {
           type="button"
           value="cook_done"
           onClick={() => {
-            changeState(id, "Done");
+            changeState(id, "cook_Done");
           }}></input>
       </div>
     );
   };
 
-  function change_data_to_show(state) {
-    console.log("Point4");
-    if (state == 1) {
-      set_data(order_data_done);
-    } else {
-      set_data(order_data);
-    }
-  }
-  //console.log("Point5");
   const element = (
     <div className="order">
       <h1 className="orderTitle">Order list</h1>
@@ -127,7 +144,7 @@ const OrderManage = () => {
             <OrderItem
               key={orderItem.order_id}
               menu={orderItem.menu}
-              state={orderItem.state}
+              state={orderItem.order_status}
               id={orderItem.order_id}
             />
           );

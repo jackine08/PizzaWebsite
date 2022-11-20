@@ -24,7 +24,7 @@ export const MenuList = [
         name: "잉글리시 디너",
         image: PedroTechSpecial,
         price: 256.53,
-        available: 0
+        available: 1
     },
     {
         id: 231,
