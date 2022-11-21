@@ -56,8 +56,6 @@ const Navbar = () => {
           <Link to="/cart">Cart</Link>
           <Link to="/OrderManage">OrderManage</Link>
           <Link to="/IngredientManage">IngredientManage</Link>
-
-          <Link to="/Test_Stock">Test2</Link>
           <button onClick={toggleNavbar}>
             <ReorderIcon />
           </button>

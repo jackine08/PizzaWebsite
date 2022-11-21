@@ -15,7 +15,7 @@ import IngredientManage from "./components/pages/manage/IngredientManage";
 import DeliveryManage from "./components/pages/manage/DeliveryManage";
 import ServerTest_O from "./components/pages/server_test/Test_Order";
 import ServerTest_S from "./components/pages/server_test/Test_Stock";
-
+import Pay from "./components/pages/Pay";
 function App() {
   return (
     <div className="App">
@@ -32,8 +32,7 @@ function App() {
           <Route path="/OrderManage" element={<OrderManage />} />
           <Route path="/IngredientManage" element={<IngredientManage />} />
           <Route path="/DeliveryManage" element={<DeliveryManage />} />
-          // <Route path="/Test_Order" element={<ServerTest_O />} />
-          // <Route path="/Test_Stock" element={<ServerTest_S />} />
+          <Route path="/Pay" element={<Pay />} />
         </Routes>
         <Footer />
       </BrowserRouter>
