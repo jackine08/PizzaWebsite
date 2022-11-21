@@ -11,7 +11,7 @@ const OrderManage = () => {
   let [order_data, set_order_data] = useState([]);
   let [order_data_done, set_order_data_done] = useState([]);
   var contents = [];
-
+  var view_state = 0;
   // function get_order_data() {
   //   order_data = [];
   //   order_data_done = [];
@@ -42,6 +42,7 @@ const OrderManage = () => {
   //   return order_data;
   // }
 
+
   function changeState(order_id, state) {
     var obj = { order_id: order_id, state: state };
     console.log(obj);
@@ -59,7 +60,6 @@ const OrderManage = () => {
   }
 
   const mounted = useRef(false);
-  let [view_state, set_viewstate] = useState();
 
   const fetch_data = async () => {
       try {
@@ -108,13 +108,14 @@ const OrderManage = () => {
   }
 
   //console.log("Point5");
-  const OrderItem = ({ key, menu, state, id }) => {
+  const OrderItem = ({ key, menu, state, id, change }) => {
     console.log("in Order Item");
     return (
       <div className="orderItem">
         <h1>주문번호: {id}</h1>
         <p>name: {menu}</p>
         <p>order_status: {state}</p>
+        <p>change: {change}</p>
         <input
           type="button"
           value="payment_comfirm"
@@ -158,6 +159,7 @@ const OrderManage = () => {
               menu={orderItem.menu}
               state={orderItem.order_status}
               id={orderItem.order_id}
+              change={orderItem.change_list}
             />
           );
         })}
