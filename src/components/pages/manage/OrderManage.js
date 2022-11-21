@@ -11,6 +11,7 @@ const OrderManage = () => {
   let [order_data, set_order_data] = useState([]);
   let [order_data_done, set_order_data_done] = useState([]);
   var contents = [];
+<<<<<<< HEAD
   var view_state = 0;
   // function get_order_data() {
   //   order_data = [];
@@ -42,6 +43,8 @@ const OrderManage = () => {
   //   return order_data;
   // }
 
+=======
+>>>>>>> 4044ea2a222aa60fc79ebf4e7168e163625fa8f0
 
   function changeState(order_id, state) {
     var obj = { order_id: order_id, state: state };
@@ -83,25 +86,40 @@ const OrderManage = () => {
         set_order_data(temp1);
         set_order_data_done(temp2);
         console.log("now order data : ", temp1);
+<<<<<<< HEAD
         console.log("now done order data", temp2);;
         set_data(temp1);
         console.log("set_data_to_show_donw");
+=======
+        console.log("now done order data", temp2);
+>>>>>>> 4044ea2a222aa60fc79ebf4e7168e163625fa8f0
       } catch (e) {
         console.error(e.message);
       }
     console.log("In use Effect");
     };
 
+<<<<<<< HEAD
   useEffect(()=>{fetch_data();}, []);
 
+=======
+>>>>>>> 4044ea2a222aa60fc79ebf4e7168e163625fa8f0
   function Change_data_to_show(state) {
     console.log("change_data_to_show");
     // console.log(order_data);
     // console.log(order_data_done);
     if (state == 1) {
+<<<<<<< HEAD
       set_data(order_data_done);
       console.log("load done data", data_to_show);
     } else {
+=======
+      set_viewstate(view_state + 1);
+      set_data(order_data_done);
+      console.log("load done data", data_to_show);
+    } else {
+      set_viewstate(view_state + 1);
+>>>>>>> 4044ea2a222aa60fc79ebf4e7168e163625fa8f0
       set_data(order_data);
       console.log("load not done data ", data_to_show);
     }
