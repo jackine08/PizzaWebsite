@@ -55,15 +55,13 @@ const OrderManage = () => {
       .catch((e) => {
         console.error(e);
       });
+      fetch_data();
   }
 
   const mounted = useRef(false);
   let [view_state, set_viewstate] = useState();
 
-  useEffect(async () => {
-    if (!mounted.current) {
-      mounted.current = true;
-    } else {
+  const fetch_data = async () => {
       try {
         var temp1 = [];
         var temp2 = [];
@@ -86,24 +84,24 @@ const OrderManage = () => {
         set_order_data_done(temp2);
         console.log("now order data : ", temp1);
         console.log("now done order data", temp2);;
+        set_data(temp1);
+        console.log("set_data_to_show_donw");
       } catch (e) {
         console.error(e.message);
       }
-    }
     console.log("In use Effect");
-  }, [view_state]);
+    };
 
+  useEffect(()=>{fetch_data();}, []);
 
   function Change_data_to_show(state) {
     console.log("change_data_to_show");
     // console.log(order_data);
     // console.log(order_data_done);
     if (state == 1) {
-      set_viewstate(view_state+1);
       set_data(order_data_done);
       console.log("load done data", data_to_show);
     } else {
-      set_viewstate(view_state+1);
       set_data(order_data);
       console.log("load not done data ", data_to_show);
     }
