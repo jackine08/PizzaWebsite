@@ -8,8 +8,8 @@ import Login from "../Login";
 
 const OrderManage = () => {
   const [data_to_show, set_data] = useState([]);
-  var order_data = [];
-  var order_data_done = [];
+  let [order_data, set_order_data] = useState([]);
+  let [order_data_done, set_order_data_done] = useState([]);
   var contents = [];
 
   // function get_order_data() {
@@ -56,46 +56,54 @@ const OrderManage = () => {
         console.error(e);
       });
   }
+
   const mounted = useRef(false);
   let [view_state, set_viewstate] = useState();
+
   useEffect(async () => {
     if (!mounted.current) {
       mounted.current = true;
     } else {
       try {
+        var temp1 = [];
+        var temp2 = [];
         var obj = { uid: "Manager" };
         const res = await axios.post("/order/get", obj);
         // 받아온 데이터를 useState 를 이용하여 선언한다.
         set_data(res.data);
         contents = res.data;
-        order_data = order_data_done = [];
+
         for (var i = 0; i < contents.length; i++) {
           if (contents[i].order_status == "cook_Done") {
-            console.log("pushed done");
-            order_data_done.push(contents[i]);
+            console.log("pushed done:", contents[i]);
+            temp2.push(contents[i]);
           } else {
-            console.log("pushed no done");
-            order_data.push(contents[i]);
+            console.log("pushed no done:", contents[i]);
+            temp1.push(contents[i]);
           }
         }
-        console.log("now order data : ", order_data);
-        console.log("now done order data", order_data_done);
+        set_order_data(temp1);
+        set_order_data_done(temp2);
+        console.log("now order data : ", temp1);
+        console.log("now done order data", temp2);;
       } catch (e) {
         console.error(e.message);
       }
     }
     console.log("In use Effect");
   }, [view_state]);
+
+
   function Change_data_to_show(state) {
     console.log("change_data_to_show");
     // console.log(order_data);
     // console.log(order_data_done);
     if (state == 1) {
-      set_viewstate(1);
+      set_viewstate(view_state+1);
       set_data(order_data_done);
       console.log("load done data", data_to_show);
     } else {
-      set_viewstate(0);
+      set_viewstate(view_state+1);
       set_data(order_data);
       console.log("load not done data ", data_to_show);
     }
