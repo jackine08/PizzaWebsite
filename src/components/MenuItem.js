@@ -24,6 +24,7 @@ const MenuItem = ({ image, name, price }) => {
       .then((res) => {
         if (res.data.status == "Success") {
           console.log("menu in cart Success");
+          alert("메뉴가 장바구니에 추가되었습니다.");
         }
       })
       .catch((e) => {

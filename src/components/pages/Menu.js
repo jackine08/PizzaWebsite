@@ -2,12 +2,9 @@ import React, { useState } from 'react';
 import {MenuList} from '../../helpers/MenuList';
 import '../../styles/Menu.css';
 import MenuItem from "../MenuItem";
-import VC from "./AudioRecord";
+import AudioItem from "../AudioItem";
 const Menu = () => {
 
-    function voice_recognition(){
-
-    }
     function get_menu_list(){
 
         var contents = [];
@@ -37,7 +34,7 @@ const Menu = () => {
     return (
         <div className="menu">
             <h1 className="menuTitle">Our Menu</h1>
-            <VC/>
+            <p><AudioItem/></p>
             <div className="menuList">
                 {temp.map((menuItem, key) => {
                     return (<MenuItem
