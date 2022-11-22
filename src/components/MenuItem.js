@@ -25,6 +25,7 @@ const MenuItem = ({ image, name, price, script }) => {
         num: Math.max(count.current.value, 1),
         total_price: total_price,
         steak_num: Math.max(steak_num.current.value, 0),
+        wine_num: Math.max(wine_num.current.value, 0),
       };
     } else if (name === "프렌치 디너") {
       obj = {
@@ -33,6 +34,7 @@ const MenuItem = ({ image, name, price, script }) => {
         num: Math.max(count.current.value, 1),
         total_price: total_price,
         steak_num: Math.max(steak_num.current.value, 0),
+        wine_num: Math.max(wine_num.current.value, 0),
         salad_num: Math.max(salad_num.current.value, 0),
       };
     } else if (name === "잉글리시 디너") {
@@ -42,6 +44,7 @@ const MenuItem = ({ image, name, price, script }) => {
         num: Math.max(count.current.value, 1),
         total_price: total_price,
         steak_num: Math.max(steak_num.current.value, 0),
+
         egg_num: Math.max(egg_num.current.value, 0),
         bacon_num: Math.max(bacon_num.current.value, 0),
         bread_num: Math.max(bread_num.current.value, 0),
@@ -53,6 +56,7 @@ const MenuItem = ({ image, name, price, script }) => {
         num: Math.max(count.current.value, 2),
         total_price: total_price,
         steak_num: Math.max(steak_num.current.value, 0),
+        wine_num: Math.max(wine_num.current.value, 0),
         bread_num: Math.max(bread_num.current.value, 0),
       };
     }
@@ -201,7 +205,7 @@ const MenuItem = ({ image, name, price, script }) => {
       </p>
       {name != "잉글리시 디너" && (
         <p>
-          와인(₩3000)
+          주류(₩3000)
           <input
             type="number"
             ref={wine_num}
