@@ -10,8 +10,12 @@ const Previous_Order = () => {
   function reorderHandler(order_id) {
     console.log("called reorder handler");
     console.log("in : ", order_id);
-    set_target(order_id);
-    reorder();
+    axios.post("order/reorder_byid", {
+      order_id: order_id,
+    });
+    //set_target(order_id);
+    //reorder();
+
     console.log("after reorder");
   }
   const reorder = async () => {
@@ -62,10 +66,14 @@ const Previous_Order = () => {
         <p>Delivery_Date : {delivery_date}</p>
         <p>Delivery_Time : {delivery_time}</p>
         <p></p>
-        <input
-          type="button"
-          value="Re-Order"
-          onClick={reorderHandler(order_id)}></input>
+        <div>
+          <input
+            type="button"
+            value="Re-Order"
+            onClick={() => {
+              reorderHandler(order_id);
+            }}></input>
+        </div>
       </div>
     );
   };

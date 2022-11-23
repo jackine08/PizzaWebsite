@@ -7,7 +7,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 //<Link to="/Test_Order">Test</Link>
 const logcheck = async () => {
-  const check = await axios.get("auth/check_login");
+  const check = await axios.post("auth/check_login");
   return check.data;
 };
 

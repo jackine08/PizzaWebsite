@@ -52,6 +52,12 @@ const Cart = () => {
       }
     });
   }
+  const checkHandler = ({ target }) => {
+    //setChecked(!bChecked);
+    console.log("Target : ", target);
+    console.log("sub", target.value, target.checked);
+    checkedItemHandler(target.value, target.checked);
+  };
   const checkedItemHandler = (id, isChecked) => {
     if (isChecked) {
       checkedItems.add(id);
@@ -62,11 +68,7 @@ const Cart = () => {
     }
     console.log("checked list : ", checkedItems);
   };
-  const checkHandler = ({ target }) => {
-    setChecked(!bChecked);
-    console.log("Target : ", target);
-    checkedItemHandler(target.value, target.checked);
-  };
+
   function pay() {
     //cart에서 결제할 항목 선택 후 거기서 선택된 애들만 결제해야 함..
     console.log("checked list : ", checkedItems);
@@ -111,7 +113,6 @@ const Cart = () => {
             type="checkbox"
             id={order_id}
             value={order_id}
-            checked={bChecked}
             onChange={(e) => checkHandler(e)}
           />
           <label htmlFor={order_id + 1} />
