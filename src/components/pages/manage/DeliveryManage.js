@@ -17,19 +17,17 @@ const DeliveryManage = () => {
   function changeState(order_id, state) {
     var obj = { order_id: order_id, state: state };
     console.log(obj);
-    const __data_temp = async()=>{
-        try{
-            console.log(obj);
-            const __res = await axios.post("order/modify", obj);
-            var __temp = __res.data;
-            console.log(__res.data);
-            if (__temp.status == "Success") {
-              console.log("delivery change Done");
-          } else console.log("delivery change Fail");
-        } catch (e) {
-          console.error(e.message);
-        }
-    }
+    axios
+      .post("order/modify", obj)
+      .then((res) => {
+        if (res.data.status == "Success") {
+          console.log("change Done");
+        } else console.log("change Fail");
+      })
+      .catch((e) => {
+        console.error(e);
+      });
+
     fetch_data();
   }
 
