@@ -16,6 +16,8 @@ const Navbar = () => {
   const navigate = useNavigate();
   let [is_logined, setIs_logined] = useState([]);
   let [name, setName] = useState([]);
+  let [uid, setUid] = useState([]);
+
   const toggleNavbar = () => {
     setOpenLinks(!openLinks);
   };
@@ -31,7 +33,31 @@ const Navbar = () => {
     setIs_logined(res.islogin);
     setName(res.name);
   });
+
   if (is_logined === "True") {
+    if(name == 'Manager'){
+        return (
+          <div className="navbar">
+            <div>
+              <p>
+                Welcome! {name}
+                <button onClick={logoutHandler}>Logout</button>
+              </p>
+            </div>
+            <div className="leftSide" id={openLinks ? "open" : "close"}>
+              <Link to="/">
+                {" "}
+                <img src={Logo} alt="logo" />{" "}
+              </Link>
+            </div>
+            <div className="rightSide">
+              <Link to="OrderManage">OrderManage</Link>
+              <Link to="DeliverManage">DeliverManage</Link>
+              <Link to="IngredientManage">IngredientManage</Link>
+            </div>
+          </div>
+      )
+    }else{
     return (
       <div className="navbar">
         <div>
@@ -45,23 +71,19 @@ const Navbar = () => {
             {" "}
             <img src={Logo} alt="logo" />{" "}
           </Link>
-          <div className="hiddenLinks">
-            <Link to="/">Home</Link>
-            <Link to="/menu">Menu</Link>
-          </div>
         </div>
         <div className="rightSide">
           <Link to="/">Home</Link>
           <Link to="/menu">Menu</Link>
           <Link to="/cart">Cart</Link>
-          <Link to="/OrderManage">OrderManage</Link>
-          <Link to="/IngredientManage">IngredientManage</Link>
+          <Link to="/Previous_Order">Previous_Order</Link>
           <button onClick={toggleNavbar}>
             <ReorderIcon />
           </button>
         </div>
       </div>
-    );
+  );};
+
   } else {
     return (
       <div className="navbar">
@@ -71,22 +93,10 @@ const Navbar = () => {
             <img src={Logo} alt="logo" />{" "}
           </Link>
           <Link to="/login">Login</Link>
-          <div className="hiddenLinks">
-            <Link to="/">Home</Link>
-            <Link to="/menu">Menu</Link>
-          </div>
         </div>
         <div className="rightSide">
           <Link to="/">Home</Link>
           <Link to="/menu">Menu</Link>
-          <Link to="/cart">Cart</Link>
-          <Link to="/OrderManage">OrderManage</Link>
-          <Link to="/IngredientManage">IngredientManage</Link>
-          <Link to="/DeliveryManage">DeliveryManage</Link>
-          <Link to="/Test_Stock">Test2</Link>
-          <button onClick={toggleNavbar}>
-            <ReorderIcon />
-          </button>
         </div>
       </div>
     );
