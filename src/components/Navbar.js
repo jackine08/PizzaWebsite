@@ -52,7 +52,7 @@ const Navbar = () => {
             </div>
             <div className="rightSide">
               <Link to="OrderManage">OrderManage</Link>
-              <Link to="DeliverManage">DeliverManage</Link>
+              <Link to="DeliveryManage">DeliverManage</Link>
               <Link to="IngredientManage">IngredientManage</Link>
             </div>
           </div>
