@@ -45,7 +45,10 @@ const Pay = () => {
         </p>
         <p>Credit : {credit}</p>
         <p>Your address : {address}</p>
-        <p>your visit : {visit}</p>
+        <p>
+          your visit : {visit}{" "}
+          {visit > 10 && <p>You are regular customer, will get 10% discount</p>}
+        </p>
       </div>
     );
   };
@@ -62,6 +65,8 @@ const Pay = () => {
     wine,
     price,
     order_id,
+    delivery_date,
+    delivery_time,
   }) => {
     return (
       <div className="orderItem" key={key}>
@@ -80,6 +85,8 @@ const Pay = () => {
           {bread > 0 && <p>Bread : {bread}</p>}{" "}
         </p>
         <p>Price : {price}</p>
+        <p>Delivery_Date : {delivery_date}</p>
+        <p>Delivery_Time : {delivery_time}</p>
       </div>
     );
   };
@@ -93,12 +100,13 @@ const Pay = () => {
       const res2 = await axios.post("order/get", obj);
       set_orderinfo(res2.data);
       const res3 = await axios.post("order/get_price");
-      // console.log(res3);
-      // console.log(res3.data);
-      // console.log(res3.data[0].tp);
-      // console.log(res3.tp);
-      set_total(res3.data[0].tp);
-      console.log("now total is : ", total_price);
+      if (res1.data[0].visit > 10) {
+        console.log("visit is more than 10");
+        set_total(res3.data[0].tp * 0.9);
+      } else {
+        console.log("visi isnt more than 10");
+        set_total(res3.data[0].tp);
+      }
     } catch (e) {
       console.error(e.message);
     }
@@ -114,7 +122,7 @@ const Pay = () => {
               name={userItem.name}
               phone={userItem.phone}
               credit={userItem.credit}
-              address={userItem.address}
+              address={userItem.addr}
               visit={userItem.visit}
             />
           );
@@ -139,6 +147,8 @@ const Pay = () => {
               wine={orderItem.wine_num}
               price={orderItem.total_price}
               order_id={orderItem.order_id}
+              delivery_date={orderItem.delivery_date}
+              delivery_time={orderItem.delivery_time}
             />
           );
         })}

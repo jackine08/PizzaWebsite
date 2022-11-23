@@ -101,6 +101,8 @@ const Cart = () => {
     wine,
     price,
     order_id,
+    delivery_date,
+    delivery_time,
   }) => {
     return (
       <div className="cartItem" key={key}>
@@ -127,6 +129,8 @@ const Cart = () => {
           {bread > 0 && <p>Bread : {bread}</p>}{" "}
         </p>
         <p>Price : {price}</p>
+        <p>Delivery_Date : {delivery_date}</p>
+        <p>Delivery_Time : {delivery_time}</p>
         <input
           type="button"
           value="삭제하기"
@@ -156,6 +160,8 @@ const Cart = () => {
               wine={cartItem.wine_num}
               price={cartItem.total_price}
               order_id={cartItem.order_id}
+              delivery_date={cartItem.delivery_date}
+              delivery_time={cartItem.delivery_time}
             />
           );
         })}
