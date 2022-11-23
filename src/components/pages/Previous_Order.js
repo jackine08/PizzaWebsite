@@ -13,10 +13,9 @@ const Previous_Order = () => {
     axios.post("order/reorder_byid", {
       order_id: order_id,
     });
-    //set_target(order_id);
-    //reorder();
 
-    console.log("after reorder");
+    console.log("after reorder will navigate to pay page");
+    navigate("/Pay");
   }
   const reorder = async () => {
     try {
