@@ -10,39 +10,50 @@ const OrderManage = () => {
   const [data_to_show, set_data] = useState([]);
   let [order_data, set_order_data] = useState([]);
   let [order_data_done, set_order_data_done] = useState([]);
+  let [stock_data, set_stockdata] = useState([]);
+  let [id_order, set_id] = useState([]);
   var contents = [];
   var view_state = 0;
-  // function get_order_data() {
-  //   order_data = [];
-  //   order_data_done = [];
+  function confirm_pay(order_id) {
+    //재고 목록 가져와서 available check
+    // if fail alert No Success then just keep going
+    axios.post("order/getbyid", { order_id: order_id }).then((res) => {
+      console.log("response is :", res);
+      if (res.data === "Fail") {
+        console.log("Error");
+        return;
+      } else {
+        console.log(res.data);
+        console.log("data test", res.data[0].menu, res.data[0].style);
+        let user = res.data[0];
+        if (user.menu === "발렌타인 디너") {
+          if (user.numbers + user.steak > stock_data[0].steak) {
+            console.log("over");
+            alert("재고 소진, 주문 승인이 불가능 합니다.");
+            return;
+          } else {
+            console.log("can proceed");
+            let tmp = -(user.numbers + user.steak);
 
-  //   const temp = async () => {
-  //     try {
-  //       var obj = { uid: "Manager" };
-  //       const res = await axios.post("/order/get", obj);
-  //       // 받아온 데이터를 useState 를 이용하여 선언한다.
-  //       contents = res.data;
-  //     } catch (e) {
-  //       console.error(e.message);
-  //     }
-  //   };
-  //   // 받아온 데이터를 useState 를 이용하여 선언한다.
-
-  //   for (var i = 0; i < contents.length; i++) {
-  //     console.log("state check", contents[i].order_status);
-  //     if (contents[i].order_status == "cook_Done") {
-  //       //console.log("pushed done");
-  //       order_data_done.push(contents[i]);
-  //     } else {
-  //       //console.log("pushed no done");
-  //       order_data.push(contents[i]);
-  //     }
-  //   }
-  //   // console.log("Point1");
-  //   return order_data;
-  // }
-
-
+            axios.post("stock/set", {
+              steak: user.numbers + user.steak,
+            });
+          }
+        } else if (user.menu === "프렌치 디너") {
+        } else if (user.menu === "잉글리시 디너") {
+        } else {
+        }
+        console.log(
+          "stock test",
+          stock_data[0],
+          stock_data[0].steak,
+          stock_data[0].salad
+        );
+        set_id(res.data);
+      }
+    });
+    console.log("id order check", id_order);
+  }
   function changeState(order_id, state) {
     var obj = { order_id: order_id, state: state };
     console.log(obj);
@@ -56,43 +67,48 @@ const OrderManage = () => {
       .catch((e) => {
         console.error(e);
       });
-      fetch_data();
+    fetch_data();
   }
 
   const mounted = useRef(false);
 
   const fetch_data = async () => {
-      try {
-        var temp1 = [];
-        var temp2 = [];
-        var obj = { uid: "Manager" };
-        const res = await axios.post("/order/get", obj);
-        // 받아온 데이터를 useState 를 이용하여 선언한다.
-        set_data(res.data);
-        contents = res.data;
+    try {
+      var temp1 = [];
+      var temp2 = [];
+      var obj = { uid: "Manager" };
+      const res = await axios.post("/order/get", obj);
+      // 받아온 데이터를 useState 를 이용하여 선언한다.
+      set_data(res.data);
+      contents = res.data;
 
-        for (var i = 0; i < contents.length; i++) {
-          if (contents[i].order_status == "cook_Done") {
-            console.log("pushed done:", contents[i]);
-            temp2.push(contents[i]);
-          } else {
-            console.log("pushed no done:", contents[i]);
-            temp1.push(contents[i]);
-          }
+      for (var i = 0; i < contents.length; i++) {
+        if (contents[i].order_status == "cook_Done") {
+          console.log("pushed done:", contents[i]);
+          temp2.push(contents[i]);
+        } else {
+          console.log("pushed no done:", contents[i]);
+          temp1.push(contents[i]);
         }
-        set_order_data(temp1);
-        set_order_data_done(temp2);
-        console.log("now order data : ", temp1);
-        console.log("now done order data", temp2);;
-        set_data(temp1);
-        console.log("set_data_to_show_donw");
-      } catch (e) {
-        console.error(e.message);
       }
-    console.log("In use Effect");
-    };
+      set_order_data(temp1);
+      set_order_data_done(temp2);
+      console.log("now order data : ", temp1);
+      console.log("now done order data", temp2);
+      set_data(temp1);
+      console.log("set_data_to_show_donw");
 
-  useEffect(()=>{fetch_data();}, []);
+      const res2 = await axios.post("stock/get");
+      set_stockdata(res2.data);
+    } catch (e) {
+      console.error(e.message);
+    }
+    console.log("In use Effect");
+  };
+
+  useEffect(() => {
+    fetch_data();
+  }, []);
 
   function Change_data_to_show(state) {
     console.log("change_data_to_show");
@@ -120,7 +136,7 @@ const OrderManage = () => {
           type="button"
           value="payment_comfirm"
           onClick={() => {
-            changeState(id, "payment");
+            confirm_pay(id);
           }}></input>
         <input
           type="button"
