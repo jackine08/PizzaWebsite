@@ -43,7 +43,7 @@ const Login = () => {
           console.log("login as customer");
           window.sessionStorage.setItem("id", idRef.current.value); // 세션스토리지에 key : id , value : idRef.current.value로 저장
           // sessionsStorage는 창 닫으면 사라짐, localStorage는 안사라짐
-          navigate("/menu");
+          navigate("/Previous_Order");
         } else if (res.data === "Manager") {
           console.log("login as manager");
           window.sessionStorage.setItem("id", idRef.current.value);

@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/static/css/main.e7cdb6ca.css",
-    "main.js": "/static/js/main.623ad2cd.js",
+    "main.css": "/static/css/main.c5df74c6.css",
+    "main.js": "/static/js/main.06484b1c.js",
     "static/js/787.fa04db77.chunk.js": "/static/js/787.fa04db77.chunk.js",
+    "static/media/home_rest.jpg": "/static/media/home_rest.941d90c06a5b37a01541.jpg",
     "static/media/pizzaLeft.jpg": "/static/media/pizzaLeft.24b07891fef1c8dae848.jpg",
-    "static/media/vegan.jpg": "/static/media/vegan.52cbfe9e6f8d75e18f8b.jpg",
-    "static/media/pizza.jpeg": "/static/media/pizza.21a1098fa87e28d80f37.jpeg",
+    "static/media/french.jpeg": "/static/media/french.30a1320f330a48a3a909.jpeg",
     "static/media/multiplePizzas.jpeg": "/static/media/multiplePizzas.490709e2113d96ca24a1.jpeg",
     "static/media/pizzaLogo.png": "/static/media/pizzaLogo.fcdc67e6b331cba63735.png",
-    "static/media/pepperoni.jpg": "/static/media/pepperoni.d173e5db8dacdf1324ed.jpg",
-    "static/media/margherita.jpg": "/static/media/margherita.683bc9bb07f9ff0d82df.jpg",
-    "static/media/pedrotechspecial.jpg": "/static/media/pedrotechspecial.425951cb0e484775fd4c.jpg",
+    "static/media/valentine.jpeg": "/static/media/valentine.4de79bc24bffb2490820.jpeg",
+    "static/media/champagne.jpg": "/static/media/champagne.22dedea75a4ff2b69a14.jpg",
+    "static/media/english.jpeg": "/static/media/english.13bf816114159a04710f.jpeg",
     "index.html": "/index.html",
-    "main.e7cdb6ca.css.map": "/static/css/main.e7cdb6ca.css.map",
-    "main.623ad2cd.js.map": "/static/js/main.623ad2cd.js.map",
+    "main.c5df74c6.css.map": "/static/css/main.c5df74c6.css.map",
+    "main.06484b1c.js.map": "/static/js/main.06484b1c.js.map",
     "787.fa04db77.chunk.js.map": "/static/js/787.fa04db77.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e7cdb6ca.css",
-    "static/js/main.623ad2cd.js"
+    "static/css/main.c5df74c6.css",
+    "static/js/main.06484b1c.js"
   ]
 }
