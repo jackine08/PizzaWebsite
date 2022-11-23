@@ -17,6 +17,7 @@ const OrderManage = () => {
   function confirm_pay(order_id) {
     //재고 목록 가져와서 available check
     // if fail alert No Success then just keep going
+    //근데 재고 소진으로 주문 불가능 하면 상태를 바꿔주고 .. ?
     axios.post("order/getbyid", { order_id: order_id }).then((res) => {
       console.log("response is :", res);
       if (res.data === "Fail") {
@@ -32,16 +33,86 @@ const OrderManage = () => {
             alert("재고 소진, 주문 승인이 불가능 합니다.");
             return;
           } else {
-            console.log("can proceed");
-            let tmp = -(user.numbers + user.steak);
-
+            let tmp = -(user.numbers + user.steak_num);
+            console.log("now tmp :", tmp);
             axios.post("stock/set", {
-              steak: user.numbers + user.steak,
+              steak: tmp,
+              salad: 0,
+              egg: 0,
+              bacon: 0,
+              bread: 0,
             });
+            changeState(order_id, "payment_confirm");
           }
         } else if (user.menu === "프렌치 디너") {
+          let nsteak, nsalad;
+          nsteak = user.numbers + user.steak_num;
+          nsalad = user.numbers + user.salad_num;
+          if (nsteak > stock_data[0].steak || nsalad > stock_data[0].salad) {
+            console.log("over");
+            alert("재고 소진, 주문 승인이 불가능 합니다.");
+            return;
+          } else {
+            nsteak = -nsteak;
+            nsalad = -nsalad;
+            axios.post("stock/set", {
+              steak: nsteak,
+              salad: nsalad,
+              egg: 0,
+              bacon: 0,
+              bread: 0,
+            });
+            changeState(order_id, "payment_confirm");
+          }
         } else if (user.menu === "잉글리시 디너") {
+          let nsteak, negg, nbacon, nbread;
+          nsteak = user.numbers + user.steak_num;
+          negg = user.numbers + user.egg_num;
+          nbacon = user.numbers + user.bacon_num;
+          nbread = user.numbers + user.bread_num;
+          if (
+            nsteak > stock_data[0].steak ||
+            negg > stock_data[0].egg ||
+            nbacon > stock_data[0].bacon ||
+            nbread > stock_data[0].bread
+          ) {
+            console.log("over");
+            alert("재고 소진, 주문 승인이 불가능 합니다.");
+            return;
+          } else {
+            nsteak = -nsteak;
+            negg = -negg;
+            nbacon = -nbacon;
+            nbread = -nbread;
+            axios.post("stock/set", {
+              steak: nsteak,
+              salad: 0,
+              egg: negg,
+              bacon: nbacon,
+              bread: nbread,
+            });
+            changeState(order_id, "payment_confirm");
+          }
         } else {
+          let nsteak, nbread;
+          nsteak = user.numbers + user.steak_num;
+          nbread = user.numbers + user.bread_num;
+          if (nsteak > stock_data[0].steak || nbread > stock_data[0].bread) {
+            console.log("over");
+            alert("재고 소진, 주문 승인이 불가능 합니다.");
+            return;
+          } else {
+            nsteak = -nsteak;
+            nbread = -nbread;
+            axios.post("stock/set", {
+              steak: nsteak,
+              salad: 0,
+              egg: 0,
+              bacon: 0,
+              bread: nbread,
+            });
+            changeState(order_id, "payment_confirm");
+          }
         }
         console.log(
           "stock test",
@@ -124,14 +195,39 @@ const OrderManage = () => {
   }
 
   //console.log("Point5");
-  const OrderItem = ({ key, menu, state, id, change }) => {
+  const OrderItem = ({
+    key,
+    menu,
+    state,
+    id,
+    style,
+    number,
+    steak,
+    salad,
+    egg,
+    bacon,
+    bread,
+    wine,
+    delivery_date,
+    delivery_time,
+  }) => {
     console.log("in Order Item");
     return (
       <div className="orderItem">
         <h1>주문번호: {id}</h1>
         <p>name: {menu}</p>
         <p>order_status: {state}</p>
-        <p>change: {change}</p>
+        <p> 추가 주문 사항 </p>
+        <p>
+          {steak > 0 && <p> Steak : {steak}</p>}{" "}
+          {wine > 0 && <p> Liquor : {wine} </p>}
+          {salad > 0 && <p> Salad : {salad}</p>}
+          {egg > 0 && <p>Egg : {egg}</p>}
+          {bacon > 0 && <p>Bacon : {bacon}</p>}
+          {bread > 0 && <p>Bread : {bread}</p>}{" "}
+        </p>
+        <p>Delivery_Date : {delivery_date}</p>
+        <p>Delivery_Time : {delivery_time}</p>
         <input
           type="button"
           value="payment_comfirm"
@@ -175,7 +271,16 @@ const OrderManage = () => {
               menu={orderItem.menu}
               state={orderItem.order_status}
               id={orderItem.order_id}
-              change={orderItem.change_list}
+              style={orderItem.style}
+              number={orderItem.numbers}
+              steak={orderItem.steak_num}
+              salad={orderItem.salad_num}
+              egg={orderItem.egg_num}
+              bacon={orderItem.bacon_num}
+              bread={orderItem.bread_num}
+              wine={orderItem.wine_num}
+              delivery_date={orderItem.delivery_date}
+              delivery_time={orderItem.delivery_time}
             />
           );
         })}
