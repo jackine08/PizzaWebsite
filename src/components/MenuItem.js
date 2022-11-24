@@ -130,8 +130,10 @@ const MenuItem = ({ image, name, price, script }) => {
       console.error(e.message);
     }
   }, []);
+
   const [style, setStyle] = useState("simple");
   const [now_count, set_nowcount] = useState(0);
+
   function pricechange() {
     //console.log("now count is :", count.current.value);
     set_nowcount(count.current.value);
@@ -162,6 +164,7 @@ const MenuItem = ({ image, name, price, script }) => {
 
     set_price(now_price);
   }
+
   return (
     <div className="menuItem">
       <div style={{ backgroundImage: `url(${image})` }}></div>

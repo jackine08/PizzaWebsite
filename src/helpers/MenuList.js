@@ -2,6 +2,7 @@ import valentine from "../images/valentine.jpeg";
 import french from "../images/french.jpeg";
 import english from "../images/english.jpeg";
 import champagne from "../images/champagne.jpg";
+
 export const MenuList = [
   {
     id: 1,
