@@ -13,7 +13,6 @@ const DeliveryManage = () => {
   var contents = [];
   var view_state = 0;
 
-
   function changeState(order_id, state) {
     var obj = { order_id: order_id, state: state };
     console.log(obj);
@@ -34,37 +33,42 @@ const DeliveryManage = () => {
   const mounted = useRef(false);
 
   const fetch_data = async () => {
-      try {
-        var temp1 = [];
-        var temp2 = [];
-        var obj = { uid: "Manager", state:"" };
-        const res = await axios.post("order/get", obj);
-        // 받아온 데이터를 useState 를 이용하여 선언한다.
-        contents = res.data;
-        console.log("contents: ",contents);
+    try {
+      var temp1 = [];
+      var temp2 = [];
+      var obj = { uid: "Manager", state: "" };
+      const res = await axios.post("order/get", obj);
+      // 받아온 데이터를 useState 를 이용하여 선언한다.
+      contents = res.data;
+      console.log("contents: ", contents);
 
-        for (var i = 0; i < contents.length; i++) {
-          if (contents[i].order_status == "cook_Done" || contents[i].order_status == "on_Delivery") {
-            console.log("pushed done:", contents[i]);
-            temp1.push(contents[i]);
-        } else if(contents[i].order_status == "Delivery_done"){
-            console.log("pushed no done:", contents[i]);
-            temp2.push(contents[i]);
-          }
+      for (var i = 0; i < contents.length; i++) {
+        if (
+          contents[i].order_status == "cook_Done" ||
+          contents[i].order_status == "on_Delivery"
+        ) {
+          console.log("pushed done:", contents[i]);
+          temp1.push(contents[i]);
+        } else if (contents[i].order_status == "Delivery_done") {
+          console.log("pushed no done:", contents[i]);
+          temp2.push(contents[i]);
         }
-        set_order_data(temp1);
-        set_order_data_done(temp2);
-        console.log("now order data : ", temp1);
-        console.log("now done order data", temp2);;
-        set_data(temp1);
-        console.log("set_data_to_show_donw");
-      } catch (e) {
-        console.error(e.message);
       }
+      set_order_data(temp1);
+      set_order_data_done(temp2);
+      console.log("now order data : ", temp1);
+      console.log("now done order data", temp2);
+      set_data(temp1);
+      console.log("set_data_to_show_donw");
+    } catch (e) {
+      console.error(e.message);
+    }
     console.log("In use Effect");
-    };
+  };
 
-  useEffect(()=>{fetch_data();}, []);
+  useEffect(() => {
+    fetch_data();
+  }, []);
 
   function Change_data_to_show(state) {
     console.log("change_data_to_show");
@@ -80,14 +84,17 @@ const DeliveryManage = () => {
   }
 
   //console.log("Point5");
-  const DeliveryItem = ({ key, menu, state, id, change }) => {
+  const DeliveryItem = ({ key, menu, state, id, date, time }) => {
     console.log("in Delivery Item");
     return (
       <div className="orderItem">
         <h1>주문번호: {id}</h1>
         <p>name: {menu}</p>
         <p>order_status: {state}</p>
-        <p>change: {change}</p>
+        <p>
+          {" "}
+          배달 일시 : {date} 시간 : {time}
+        </p>
         <input
           type="button"
           value="cook_Done"
@@ -132,6 +139,8 @@ const DeliveryManage = () => {
               state={orderItem.order_status}
               id={orderItem.order_id}
               change={orderItem.change_list}
+              date={orderItem.delivery_date}
+              time={orderItem.delivery_time}
             />
           );
         })}
