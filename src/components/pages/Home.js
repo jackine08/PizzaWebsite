@@ -16,6 +16,24 @@ const Home = () => {
     setName(res.name);
   });
   if (is_logined === "True") {
+    if(name=="Manager"){
+        return (
+          <div className="home" style={{ backgroundImage: `url(${BannerImage}` }}>
+            Welcome !
+            <div className="headerContainer">
+              <Link to="/OrderManage">
+                <button>OrderManage</button>
+              </Link>
+              <Link to="/DeliveryManage">
+                <button>DeliveryManage</button>
+              </Link>
+              <Link to="/IngredientManage">
+                <button>IngredientManage</button>
+              </Link>
+            </div>
+          </div>
+      );
+    }else{
     return (
       <div className="home" style={{ backgroundImage: `url(${BannerImage}` }}>
         Welcome !
@@ -26,7 +44,7 @@ const Home = () => {
           <h1> </h1>
         </div>
       </div>
-    );
+  );};
   } else {
     return (
       <div className="home" style={{ backgroundImage: `url(${BannerImage}` }}>
