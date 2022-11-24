@@ -39,10 +39,10 @@ const Navbar = () => {
         return (
           <div className="navbar">
             <div>
-              <p>
+              <a>
                 Welcome! {name}
                 <button onClick={logoutHandler}>Logout</button>
-              </p>
+              </a>
             </div>
             <div className="leftSide" id={openLinks ? "open" : "close"}>
               <Link to="/">
@@ -61,10 +61,10 @@ const Navbar = () => {
     return (
       <div className="navbar">
         <div>
-          <p>
+          <a>
             Welcome! {name}
             <button onClick={logoutHandler}>Logout</button>
-          </p>
+          </a>
         </div>
         <div className="leftSide" id={openLinks ? "open" : "close"}>
           <Link to="/">
