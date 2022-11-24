@@ -35,55 +35,55 @@ const Navbar = () => {
   });
 
   if (is_logined === "True") {
-    if(name == 'Manager'){
-        return (
-          <div className="navbar">
-            <div>
-              <a>
-                Welcome! {name}
-                <button onClick={logoutHandler}>Logout</button>
-              </a>
-            </div>
-            <div className="leftSide" id={openLinks ? "open" : "close"}>
-              <Link to="/">
-                {" "}
-                <img src={Logo} alt="logo" />{" "}
-              </Link>
-            </div>
-            <div className="rightSide">
-              <Link to="OrderManage">OrderManage</Link>
-              <Link to="DeliveryManage">DeliverManage</Link>
-              <Link to="IngredientManage">IngredientManage</Link>
-            </div>
+    if (name == "Manager") {
+      return (
+        <div className="navbar">
+          <div>
+            <a>
+              Welcome! {name}
+              <button onClick={logoutHandler}>Logout</button>
+            </a>
           </div>
-      )
-    }else{
-    return (
-      <div className="navbar">
-        <div>
-          <a>
-            Welcome! {name}
-            <button onClick={logoutHandler}>Logout</button>
-          </a>
+          <div className="leftSide" id={openLinks ? "open" : "close"}>
+            <Link to="/">
+              {" "}
+              <img src={Logo} alt="logo" />{" "}
+            </Link>
+          </div>
+          <div className="rightSide">
+            <Link to="OrderManage">OrderManage</Link>
+            <Link to="DeliveryManage">DeliverManage</Link>
+            <Link to="IngredientManage">IngredientManage</Link>
+          </div>
         </div>
-        <div className="leftSide" id={openLinks ? "open" : "close"}>
-          <Link to="/">
-            {" "}
-            <img src={Logo} alt="logo" />{" "}
-          </Link>
+      );
+    } else {
+      return (
+        <div className="navbar">
+          <div>
+            <a>
+              Welcome! {name}
+              <button onClick={logoutHandler}>Logout</button>
+            </a>
+          </div>
+          <div className="leftSide" id={openLinks ? "open" : "close"}>
+            <Link to="/">
+              {" "}
+              <img src={Logo} alt="logo" />{" "}
+            </Link>
+          </div>
+          <div className="rightSide">
+            <Link to="/">Home</Link>
+            <Link to="/menu">Menu</Link>
+            <Link to="/cart">Cart</Link>
+            <Link to="/OrderList">OrderList</Link>
+            <button onClick={toggleNavbar}>
+              <ReorderIcon />
+            </button>
+          </div>
         </div>
-        <div className="rightSide">
-          <Link to="/">Home</Link>
-          <Link to="/menu">Menu</Link>
-          <Link to="/cart">Cart</Link>
-          <Link to="/Previous_Order">Previous_Order</Link>
-          <button onClick={toggleNavbar}>
-            <ReorderIcon />
-          </button>
-        </div>
-      </div>
-  );};
-
+      );
+    }
   } else {
     return (
       <div className="navbar">

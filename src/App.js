@@ -16,7 +16,7 @@ import DeliveryManage from "./components/pages/manage/DeliveryManage";
 import ServerTest_O from "./components/pages/server_test/Test_Order";
 import ServerTest_S from "./components/pages/server_test/Test_Stock";
 import Pay from "./components/pages/Pay";
-import Previous_Order from "./components/pages/Previous_Order";
+import OrderList from "./components/pages/OrderList";
 function App() {
   return (
     <div className="App">
@@ -34,7 +34,7 @@ function App() {
           <Route path="/IngredientManage" element={<IngredientManage />} />
           <Route path="/DeliveryManage" element={<DeliveryManage />} />
           <Route path="/Pay" element={<Pay />} />
-          <Route path="/Previous_Order" element={<Previous_Order />} />
+          <Route path="/OrderList" element={<OrderList />} />
         </Routes>
         <Footer />
       </BrowserRouter>
