@@ -44,6 +44,7 @@ const Previous_Order = () => {
     order_id,
     delivery_date,
     delivery_time,
+    order_status,
   }) => {
     return (
       <div className="cartItem" key={key}>
@@ -51,7 +52,7 @@ const Previous_Order = () => {
           메뉴 : {menu}&nbsp;&nbsp;&nbsp;&nbsp; 스타일 : {style}{" "}
           &nbsp;&nbsp;&nbsp;&nbsp;주문 수량 : {number}
         </p>
-        <p> </p>
+        <p> 주문 상태 : {order_status}</p>
         <p> 추가 주문 사항 </p>
         <p>
           {steak > 0 && <p> Steak : {steak}</p>}{" "}
@@ -66,12 +67,14 @@ const Previous_Order = () => {
         <p>Delivery_Time : {delivery_time}</p>
         <p></p>
         <div>
-          <input
-            type="button"
-            value="Re-Order"
-            onClick={() => {
-              reorderHandler(order_id);
-            }}></input>
+          {order_status === "Delivery_done" && (
+            <input
+              type="button"
+              value="Re-Order"
+              onClick={() => {
+                reorderHandler(order_id);
+              }}></input>
+          )}
         </div>
       </div>
     );
@@ -79,7 +82,7 @@ const Previous_Order = () => {
   useEffect(async () => {
     console.log("in effect");
     try {
-      let obj = { uid: "", state: "Delivery_done" };
+      let obj = { uid: "", state: "" };
       const res2 = await axios.post("order/get", obj);
       console.log(res2.data);
       set_orderinfo(res2.data);
@@ -110,6 +113,7 @@ const Previous_Order = () => {
               order_id={orderItem.order_id}
               delivery_date={orderItem.delivery_date}
               delivery_time={orderItem.delivery_time}
+              order_status={orderItem.order_status}
             />
           );
         })}
