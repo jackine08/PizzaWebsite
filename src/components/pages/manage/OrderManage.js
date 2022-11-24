@@ -154,10 +154,15 @@ const OrderManage = () => {
       contents = res.data;
 
       for (var i = 0; i < contents.length; i++) {
-        if (contents[i].order_status == "cook_Done") {
+        let state = contents[i].order_status;
+        if (state == "cook_Done") {
           console.log("pushed done:", contents[i]);
           temp2.push(contents[i]);
-        } else {
+        } else if (
+          state == "payment" ||
+          state == "payment_confirm" ||
+          state == "cooking"
+        ) {
           console.log("pushed no done:", contents[i]);
           temp1.push(contents[i]);
         }
@@ -215,7 +220,9 @@ const OrderManage = () => {
     return (
       <div className="orderItem">
         <h1>주문번호: {id}</h1>
-        <p>name: {menu}</p>
+        <p>
+          name: {menu} style: {style} 수량 : {number}
+        </p>
         <p>order_status: {state}</p>
         <p> 추가 주문 사항 </p>
         <p>
