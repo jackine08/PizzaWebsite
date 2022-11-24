@@ -79,7 +79,7 @@ const Previous_Order = () => {
   useEffect(async () => {
     console.log("in effect");
     try {
-      let obj = { uid: "", state: "delivery_done" };
+      let obj = { uid: "", state: "Delivery_done" };
       const res2 = await axios.post("order/get", obj);
       console.log(res2.data);
       set_orderinfo(res2.data);
