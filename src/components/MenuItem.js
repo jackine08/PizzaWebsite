@@ -4,7 +4,9 @@ import RadioGroup from "../helpers/RadioGroup";
 import Radio from "../helpers/Radio";
 import Counter from "../helpers/Counter";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const MenuItem = ({ image, name, price, script }) => {
+  const navigate = useNavigate();
   // const style = useRef();
   const count = useRef();
   const wine_num = useRef();
@@ -86,6 +88,9 @@ const MenuItem = ({ image, name, price, script }) => {
         if (res.data.status == "Success") {
           console.log("menu in cart Success");
           alert("메뉴가 장바구니에 추가되었습니다.");
+        } else {
+          alert("로그인 후 이용해 주세요");
+          navigate("/Login");
         }
       })
       .catch((e) => {

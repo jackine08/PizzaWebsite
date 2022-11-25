@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/static/css/main.5b6c7b12.css",
-    "main.js": "/static/js/main.0abfce72.js",
+    "main.js": "/static/js/main.669318e1.js",
     "static/js/787.fa04db77.chunk.js": "/static/js/787.fa04db77.chunk.js",
     "static/media/home_rest.jpg": "/static/media/home_rest.941d90c06a5b37a01541.jpg",
     "static/media/pizzaLeft.jpg": "/static/media/pizzaLeft.24b07891fef1c8dae848.jpg",
     "static/media/french.jpeg": "/static/media/french.30a1320f330a48a3a909.jpeg",
     "static/media/multiplePizzas.jpeg": "/static/media/multiplePizzas.490709e2113d96ca24a1.jpeg",
-    "static/media/pizzaLogo.png": "/static/media/pizzaLogo.fcdc67e6b331cba63735.png",
     "static/media/valentine.jpeg": "/static/media/valentine.4de79bc24bffb2490820.jpeg",
     "static/media/champagne.jpg": "/static/media/champagne.22dedea75a4ff2b69a14.jpg",
     "static/media/english.jpeg": "/static/media/english.13bf816114159a04710f.jpeg",
+    "static/media/homebtn.png": "/static/media/homebtn.2e8542e2e1bce9c7d685.png",
     "index.html": "/index.html",
     "main.5b6c7b12.css.map": "/static/css/main.5b6c7b12.css.map",
-    "main.0abfce72.js.map": "/static/js/main.0abfce72.js.map",
+    "main.669318e1.js.map": "/static/js/main.669318e1.js.map",
     "787.fa04db77.chunk.js.map": "/static/js/787.fa04db77.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.5b6c7b12.css",
-    "static/js/main.0abfce72.js"
+    "static/js/main.669318e1.js"
   ]
 }
