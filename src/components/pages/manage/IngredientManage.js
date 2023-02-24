@@ -6,6 +6,8 @@ import "../../../styles/Order.css";
 const IngredientManage = () => {
   var refList = [useRef(), useRef(), useRef(), useRef(), useRef()];
   var [turn, setturn] = useState(0);
+  var [data_to_show, set_data] = useState([]);
+
   const fetch_data = async () => {
     console.log("start fetch_data");
     var obj = { uid: "manager" };
@@ -58,12 +60,10 @@ const IngredientManage = () => {
     );
   };
 
-  var [data_to_show, set_data] = useState([]);
-
   useEffect(() => {
     fetch_data();
-  }, []);
-
+    }, []);
+    
   return (
     <div className="order">
       <h1 className="orderTitle">Ingredient list</h1>

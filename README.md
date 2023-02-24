@@ -1,3 +1,2 @@
-# Pizza Website React App
-
-## React, MySQL, API
+# Software Engineering Project
+## Pizza website
